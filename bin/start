@@ -11,8 +11,9 @@ PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 export USER_ID=${UID}
 export GROUP_ID=${UID}
 
-while read line; do export "$line";
-done < <(cat ${PROJECT_PATH}/src/.env | grep -v "#" | grep -v "^$")
+cat ${PROJECT_PATH}/.env | grep -v "^#" | grep -v "^$" | while read line; do
+    export "$line";
+done
 
 ${DOCKER_COMPOSE} -f ${PROJECT_PATH}/docker-compose.yml down --remove-orphans
 

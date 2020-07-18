@@ -1,8 +1,10 @@
 FROM node:alpine
 
-COPY ./src /
+RUN mkdir /app
 
-WORKDIR /src
+WORKDIR /app
+
+COPY ./src /app
 
 RUN npm i
 

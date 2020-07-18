@@ -16,6 +16,8 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - whistle_network
   node:
     build:
       args:
@@ -23,5 +25,11 @@ services:
         - GROUP_ID=${GROUP_ID}
       context: .
       dockerfile: ./docker/node/Dockerfile
-    volumes:
-      - ./src:/src
+    ports:
+      - 8080:8080
+    networks:
+      - whistle_network
+networks:
+  whistle_network:
+    driver: bridge
+
