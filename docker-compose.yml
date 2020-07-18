@@ -16,3 +16,12 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  node:
+    build:
+      args:
+        - USER_ID=${USER_ID}
+        - GROUP_ID=${GROUP_ID}
+      context: .
+      dockerfile: ./docker/node/Dockerfile
+    volumes:
+      - ./src:/app
