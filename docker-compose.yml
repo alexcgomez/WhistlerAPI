@@ -24,4 +24,4 @@ services:
       context: .
       dockerfile: ./docker/node/Dockerfile
     volumes:
-      - ./src:/app
+      - ./src:/src
