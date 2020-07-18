@@ -1,5 +1,0 @@
-.idea/
-data/*
-node_modules
-*.sql
-src/.env

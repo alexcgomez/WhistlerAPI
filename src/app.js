@@ -7,6 +7,8 @@ const app = express();
 
 dotenv.config();
 
+console.log('MYSQL HOST: ', process.env.MYSQL_HOST);
+
 // Express middleware
 app.use(bodyParser.json());
 
@@ -33,3 +35,5 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log('SERVER RUNNING ON PORT', PORT);
 });
+
+
