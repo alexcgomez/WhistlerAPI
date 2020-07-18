@@ -12,6 +12,7 @@ services:
     ports:
       - ${MYSQL_PORT}:3306
     environment:
+      MYSQL_HOST: ${MYSQL_HOST}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -27,6 +28,11 @@ services:
       dockerfile: ./docker/node/Dockerfile
     ports:
       - 8080:8080
+    environment:
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
       - whistle_network
 networks:
