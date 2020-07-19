@@ -7,7 +7,7 @@ const PORT = process.env.SERVER_PORT || 8080;
 const express = require('express');
 const app = express();
 const db = require('./db/models/index.js');
-const user = require('./db/models/users.js');
+const user = require('./db/models/user.js');
 
 dotenv.config();
 
