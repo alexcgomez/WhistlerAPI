@@ -18,7 +18,7 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
-      - whistle_network
+      - whistler_network
   node:
     build:
       args:
@@ -36,8 +36,10 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
-      - whistle_network
+      - whistler_network
+    volumes:
+    - ./src:/app
 networks:
-  whistle_network:
+  whistler_network:
     driver: bridge
 

@@ -7,8 +7,6 @@ const app = express();
 
 dotenv.config();
 
-console.log('MYSQL HOST: ', process.env.MYSQL_HOST);
-
 // Express middleware
 app.use(bodyParser.json());
 
@@ -28,7 +26,7 @@ connection.connect(error => {
 
 // Route
 app.get('/', (req, res) => {
-  res.send('Welcome Whistle API');
+  res.send('Welcome Whistler API');
 });
 
 // Serve
