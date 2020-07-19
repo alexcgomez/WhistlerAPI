@@ -28,7 +28,7 @@ connection.connect(error => {
 
 // Route
 app.get('/', (req, res) => {
-  res.send('Welcome Whistle API');
+  res.send('Welcome Whistler API');
 });
 
 // Serve

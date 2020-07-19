@@ -37,6 +37,8 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
       - whistler_network
+    volumes:
+    - ./src:/app
 networks:
   whistler_network:
     driver: bridge
