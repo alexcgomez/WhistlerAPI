@@ -3,8 +3,8 @@
 CONTAINER_NAME="$(docker ps --format "{{.Names}}" | grep node)"
 
 if [[ -z ${CONTAINER_NAME} ]]; then
-    echo "Node container seems that is not running.";
-    exit 1;
+  echo "Node container seems that is not running."
+  exit 1
 fi
 
 docker exec -u 1000 -it "${CONTAINER_NAME}" npx sequelize $@
