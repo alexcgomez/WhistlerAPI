@@ -1,5 +1,6 @@
 .idea/
 data/*
-./src/node_modules
+/src/node_modules
 *.sql
 .env
+/venv
