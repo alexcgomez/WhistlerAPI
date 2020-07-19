@@ -1,1 +1,1 @@
-# WhistleAPI
+# WhistlerAPI
