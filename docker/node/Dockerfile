@@ -14,4 +14,8 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 
 RUN npm i
 
-CMD dockerize -wait tcp://mysql:3306 -timeout 60m npm run start
+COPY ./docker/node/entrypoint.sh /entrypoint.sh
+
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT /entrypoint.sh
