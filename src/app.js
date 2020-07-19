@@ -4,11 +4,8 @@ const bodyParser = require('body-parser');
 const PORT = process.env.SERVER_PORT || 8080;
 const express = require('express');
 const app = express();
-const db =require('./models/index.js')
 
 dotenv.config();
-
-console.log(db);
 
 // Express middleware
 app.use(bodyParser.json());

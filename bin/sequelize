@@ -1,5 +1,4 @@
 #!/bin/bash
-
 CONTAINER_NAME="$(docker ps --format "{{.Names}}" | grep node)"
 
 if [[ -z ${CONTAINER_NAME} ]]; then
