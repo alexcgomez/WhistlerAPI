@@ -8,6 +8,15 @@ DOCKER_COMPOSE=$(which docker-compose)
 
 PROJECT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
 
+if [ ! -f ${PROJECT_PATH}/.env ]; then
+  cp ${PROJECT_PATH}/.env.example ${PROJECT_PATH}/.env
+  echo -e "No .env file present.\nCopying .env.example to .env"
+fi
+
+if [ ! -d ${PROJECT_PATH}/src/node_modules ]; then
+    cd ${PROJECT_PATH}/src && npm install && cd ${PROJECT_PATH}
+fi
+
 export USER_ID=${UID}
 export GROUP_ID=${UID}
 
