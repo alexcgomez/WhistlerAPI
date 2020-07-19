@@ -1,9 +1,13 @@
+const DataTypes = require('sequelize');
+
 const dotenv = require('dotenv');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const PORT = process.env.SERVER_PORT || 8080;
 const express = require('express');
 const app = express();
+const db = require('./db/models/index.js');
+const user = require('./db/models/users.js');
 
 dotenv.config();
 
@@ -29,6 +33,9 @@ app.get('/', (req, res) => {
   res.send('Welcome Whistler API');
 });
 
+app.get('/users', (req, res) => {
+  user(db.sequelize, DataTypes).findAll().then((result) => res.json(result));
+});
 // Serve
 app.listen(PORT, () => {
   console.log('SERVER RUNNING ON PORT', PORT);
