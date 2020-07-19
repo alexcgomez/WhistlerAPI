@@ -3,3 +3,4 @@ data/*
 /src/node_modules
 *.sql
 .env
+/venv
