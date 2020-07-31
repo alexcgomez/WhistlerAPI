@@ -6,4 +6,4 @@ if [[ -z ${CONTAINER_NAME} ]]; then
   exit 1
 fi
 
-docker exec -u 1000 -it "${CONTAINER_NAME}" npx sequelize $@
+docker exec -u 1000 -it "${CONTAINER_NAME}" $@
