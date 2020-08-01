@@ -1,6 +1,9 @@
-/.idea
+.idea/
 data/*
-/src/node_modules
+/api/node_modules
 *.sql
 .env
 /venv
+/api/build/
+/api/tmp/
+/api/temp/

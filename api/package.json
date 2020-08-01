@@ -1,0 +1,32 @@
+{
+  "name": "whistler_api",
+  "version": "1.0.0",
+  "description": "API Server for CMS versions dashboard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raiben23/WhistlerAPI.git"
+  },
+  "author": "@raiben23",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raiben23/WhistlerAPI/issues"
+  },
+  "homepage": "https://github.com/raiben23/WhistlerAPI#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.1.0",
+    "typeorm": "^0.2.25"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@typescript-eslint/eslint-plugin": "^3.7.1",
+    "@typescript-eslint/parser": "^3.7.1",
+    "eslint": "^7.6.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  }
+}
