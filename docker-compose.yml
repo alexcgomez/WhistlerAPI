@@ -30,15 +30,12 @@ services:
       - 8080:8080
     depends_on:
       - mysql
-    environment:
-      MYSQL_HOST: ${MYSQL_HOST}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file:
+      - ./.env
     networks:
       - whistler_network
     volumes:
-    - ./api:/app
+      - ./api:/app
 networks:
   whistler_network:
     driver: bridge

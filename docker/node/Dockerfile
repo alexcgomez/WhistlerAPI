@@ -1,4 +1,5 @@
 FROM node:alpine
+COPY .env /app
 
 RUN mkdir /app
 
