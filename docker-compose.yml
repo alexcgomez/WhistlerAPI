@@ -38,7 +38,7 @@ services:
     networks:
       - whistler_network
     volumes:
-    - ./src:/app
+    - ./api:/app
 networks:
   whistler_network:
     driver: bridge

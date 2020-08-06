@@ -1,21 +1,25 @@
 import * as express from 'express';
-import { Request, Response } from 'express';
-import { UserRespository } from './Repository/UserRespository';
-import { createConnection } from 'typeorm/index';
 import * as dotenv from 'dotenv';
+import { createConnection } from 'typeorm';
+import * as cors from 'cors';
+import * as morgan from 'morgan';
 
-dotenv.config();
-const app = express();
-const userRepository = new UserRespository();
+dotenv.config({path: '../.env'});
+const {SERVER_PORT} = process.env;
 
-createConnection()
-  .then(connection => {
-  })
-  .catch(error => console.log(error));
+//DB
+createConnection().then(async () => {
 
-app.get('/users', (request: Request, response: Response) => {
-  userRepository.getUsers().then((result: User[]) => response.send(result));
-});
+//EXPRESS
+  const app = express();
+// Middlewares
+  app.use(cors());
+  app.use(express.json());
+  app.use(morgan('short'));
 
-// eslint-disable-next-line no-undef
-app.listen(process.env.SERVER_PORT, )
+  app.listen(SERVER_PORT, () => {
+    console.log('Server running on Port: ' + SERVER_PORT);
+  });
+}).catch(error => console.log(error));
+
+

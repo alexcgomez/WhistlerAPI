@@ -4,7 +4,7 @@ RUN mkdir /app
 
 WORKDIR /app
 
-COPY ./src /app
+COPY ./api /app
 
 ENV DOCKERIZE_VERSION v0.6.0
 

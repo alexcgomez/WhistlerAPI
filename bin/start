@@ -13,8 +13,8 @@ if [ ! -f ${PROJECT_PATH}/.env ]; then
   echo -e "No .env file present.\nCopying .env.example to .env"
 fi
 
-if [ ! -d ${PROJECT_PATH}/src/node_modules ]; then
-    cd ${PROJECT_PATH}/src && npm install && cd ${PROJECT_PATH}
+if [ ! -d ${PROJECT_PATH}/api/node_modules ]; then
+    cd ${PROJECT_PATH}/api && npm install && cd ${PROJECT_PATH}
 fi
 
 export USER_ID=${UID}
