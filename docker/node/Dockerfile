@@ -1,11 +1,12 @@
 FROM node:alpine
-COPY .env /app
 
 RUN mkdir /app
 
 WORKDIR /app
 
 COPY ./api /app
+
+COPY .env /app
 
 ENV DOCKERIZE_VERSION v0.6.0
 
