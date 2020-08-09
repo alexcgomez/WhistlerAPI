@@ -1,18 +1,15 @@
 import * as express from 'express';
+import { getManager } from 'typeorm/index';
+import { User } from '../../Entities/User';
 
 let router = express.Router();
 
-// SWAGER
 router.get('/', getUsers);
-//
+
 export default router;
 
 async function getUsers(req, res) {
-  try {
-    res.json({"rows":"hola"});
-  } catch (e) {
-    res.json({error: e.toString()});
-  }
+await res.send(getManager().getRepository(User).createQueryBuilder('User').getMany())
 }
 
 

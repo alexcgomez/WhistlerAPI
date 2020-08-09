@@ -18,7 +18,7 @@ createConnection().then(async () => {
   // Middlewares
   app.use(cors());
   app.use(express.json());
-  app.use(morgan('short'));
+  app.use(morgan('dev'));
   routes(app);
 
   // Server Run
