@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 import { createConnection } from 'typeorm';
 import * as cors from 'cors';
 import * as morgan from 'morgan';
-import { UserRoutes } from './routes/UserRoutes';
+import { routes } from './routes/Routes';
 
 // Environment Config
 dotenv.config({path: '../.env'});
@@ -19,7 +19,7 @@ createConnection().then(async () => {
   app.use(cors());
   app.use(express.json());
   app.use(morgan('short'));
-  app.use('/users', UserRoutes);
+  routes(app);
 
   // Server Run
   app.listen(SERVER_PORT, () => {

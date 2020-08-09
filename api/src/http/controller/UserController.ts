@@ -1,26 +1,19 @@
-import { getManager, Repository } from 'typeorm/index';
-import { User } from '../../Entities/User';
+import * as express from 'express';
 
-export class UserController {
-  private userRepository: Repository<User>;
+let router = express.Router();
 
-  constructor() {
-    this.userRepository = getManager().getRepository(User);
-  }
+// SWAGER
+router.get('/', getUsers);
+//
+export default router;
 
-  getAllUsers(): Promise<User[]> {
-    return this.userRepository
-      .createQueryBuilder('User')
-      .getMany();
-  }
-
-  getUser(id): Promise<User[]>{
-    return this.userRepository
-      .find({id:id})
-  }
-
-  createUser(User): Promise<User> {
-    return this.userRepository
-      .save(User)
+async function getUsers(req, res) {
+  try {
+    res.json({"rows":"hola"});
+  } catch (e) {
+    res.json({error: e.toString()});
   }
 }
+
+
+
