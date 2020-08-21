@@ -1,6 +1,6 @@
 import UserController  from '../http/controller/UserController';
 
 export function routes(app):void {
-  app.use('/users', UserController);
+  app.use('/v1/users', UserController);
 }
 export default routes;
