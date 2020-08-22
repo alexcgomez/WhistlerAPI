@@ -4,7 +4,7 @@ import { User } from '../../Entities/User';
 
 const router = express.Router();
 
-router.get('/', getUsers);
+router.get('/:userId', getUsers);
 router.post('/create', createUser);
 router.put('/:userId', updateUser);
 router.delete('/:userId', deleteUser);
@@ -12,7 +12,7 @@ router.delete('/:userId', deleteUser);
 export default router;
 
 async function getUsers(req, res) {
-  const users = await getRepository(User).find();
+  const users = await getRepository(User).find({id:req.params.userId});
   res.send(users);
 }
 
