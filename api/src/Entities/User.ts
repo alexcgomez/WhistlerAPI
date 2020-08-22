@@ -21,9 +21,4 @@ export class User {
   @CreateDateColumn()
   createdAt: Date;
 
-  @UpdateDateColumn()
-  updatedAt: Date;
-
-
-
 }

@@ -9,7 +9,6 @@ router.post('/create', createUser);
 router.put('/:userId', updateUser);
 router.delete('/:userId', deleteUser);
 
-
 export default router;
 
 async function getUsers(req, res) {
