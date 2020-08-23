@@ -4,16 +4,16 @@ import { User } from '../../Entities/User';
 
 const router = express.Router();
 
-router.get('/:userId', getUsers);
+router.get('/:userId', getUser);
 router.post('/create', createUser);
 router.put('/:userId', updateUser);
 router.delete('/:userId', deleteUser);
 
 export default router;
 
-async function getUsers(req, res) {
-  const users = await getRepository(User).find({id:req.params.userId});
-  res.send(users);
+async function getUser(req, res) {
+  const user = await getRepository(User).findOne({id:req.params.userId});
+  res.send(user);
 }
 
 async function createUser(req, res) {
@@ -34,7 +34,7 @@ async function updateUser(req, res) {
   }
   user.firstName = req.body.firstName ? req.body.firstName : user.firstName;
   user.lastName = req.body.lastName ? req.body.lastName : user.lastName;
-  user.email = req.body.email ? req.body.email : user.email;
+  user.email = req.body.email ? req.body.email : user.email;-
   userRepository.update({ id: user.id }, user);
   res.send(user);
 }
