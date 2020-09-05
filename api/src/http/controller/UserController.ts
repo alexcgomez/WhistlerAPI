@@ -12,7 +12,8 @@ router.delete('/:userId', deleteUser);
 export default router;
 
 async function getUser(req, res) {
-  const user = await getRepository(User).findOne({id:req.params.userId});
+  //TODO:  Validar si existe el usuario
+  const user = await getRepository(User).findOne({email:req.params.email});
   res.send(user);
 }
 
@@ -21,8 +22,14 @@ async function createUser(req, res) {
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
   user.email = req.body.email;
-  await getRepository(User).save(user);
-  res.send(user.id);
+  user.password = req.body.password;
+  try {
+    await getRepository(User).save(user);
+    res.send(user.id);
+  } catch (e) {
+    res.status(400).send(e)
+  }
+
 }
 
 async function updateUser(req, res) {
