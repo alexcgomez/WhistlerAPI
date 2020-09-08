@@ -4,7 +4,7 @@ import { User } from '../../Entities/User';
 
 const router = express.Router();
 
-router.get('/:userId', getUser);
+router.get('/', getUser);
 router.post('/create', createUser);
 router.put('/:userId', updateUser);
 router.delete('/:userId', deleteUser);
@@ -12,9 +12,8 @@ router.delete('/:userId', deleteUser);
 export default router;
 
 async function getUser(req, res) {
-  //TODO:  Validar si existe el usuario
-  const user = await getRepository(User).findOne({email:req.params.email});
-  res.send(user);
+    const user = await getRepository(User).findOne({email:req.body.email});
+    res.send(user.firstName + ' ' + user.lastName);
 }
 
 async function createUser(req, res) {
