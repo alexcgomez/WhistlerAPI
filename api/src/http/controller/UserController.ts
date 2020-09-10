@@ -26,7 +26,7 @@ async function createUser(req, res) {
     await getRepository(User).save(user);
     res.send(user.id);
   } catch (e) {
-    res.status(400).send(e)
+    res.status(400).send(e);
   }
 
 }

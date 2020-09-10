@@ -1,9 +1,10 @@
-import UserController  from '../http/controller/UserController';
-import AuthenticationController  from '../http/controller/AuthenticationController';
+import UserController from '../http/controller/UserController';
 import { Express } from 'express';
+import LoginController from '../http/controller/LoginController';
 
-export function routes(app: Express):void {
+export function routes(app: Express): void {
   app.use('/v1/users', UserController);
-  app.use('/v1/login', AuthenticationController)
+  app.use('/login', LoginController);
 }
+
 export default routes;
