@@ -7,7 +7,7 @@ import { routes } from './routes/Routes';
 
 const session = require('express-session');
 const passport = require('passport');
-require('./services/passport/local-auth')
+require('./services/passport/local-auth')(passport)
 // Environment Config
 dotenv.config({path: '../.env'});
 const {SERVER_PORT} = process.env;

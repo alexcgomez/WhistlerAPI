@@ -4,12 +4,6 @@ require('../../services/passport/local-auth')
 
 const router = express.Router();
 
-router.get('/', passport.authenticate('local-signup',{
-  passReqToCallback:true
-}));
+router.post('/', passport.authenticate('local-signup'));
 
 export default router;
-
-
-
-
