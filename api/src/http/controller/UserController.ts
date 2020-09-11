@@ -12,23 +12,26 @@ router.delete('/:userId', deleteUser);
 export default router;
 
 async function getUser(req, res) {
-    const user = await getRepository(User).findOne({email:req.body.email});
+  try {
+    const user = await getRepository(User).findOne({id: req.params.id});
     res.send(user.firstName + ' ' + user.lastName);
+  } catch (e) {
+    res.send(e.message);
+  }
 }
 
 async function createUser(req, res) {
-  const user: User = new User();
-  user.firstName = req.body.firstName;
-  user.lastName = req.body.lastName;
-  user.email = req.body.email;
-  user.password = req.body.password;
   try {
+    const user = new User();
+    user.email = req.body.email;
+    user.password = await user.encryptPassword(req.body.password);
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
     await getRepository(User).save(user);
     res.send(user.id);
   } catch (e) {
-    res.status(400).send(e);
+    res.send(e.message);
   }
-
 }
 
 async function updateUser(req, res) {
@@ -40,8 +43,9 @@ async function updateUser(req, res) {
   }
   user.firstName = req.body.firstName ? req.body.firstName : user.firstName;
   user.lastName = req.body.lastName ? req.body.lastName : user.lastName;
-  user.email = req.body.email ? req.body.email : user.email;-
-  userRepository.update({ id: user.id }, user);
+  user.email = req.body.email ? req.body.email : user.email;
+  -
+    userRepository.update({id: user.id}, user);
   res.send(user);
 }
 
@@ -52,7 +56,7 @@ async function deleteUser(req, res) {
   if (!user) {
     return res.status('404').send('User with id ' + userId + ' not found');
   }
-  userRepository.delete({id:userId});
-  res.send("User with id "+ userId + " has been deleted.");
+  userRepository.delete({id: userId});
+  res.send('User with id ' + userId + ' has been deleted.');
 }
 

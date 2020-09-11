@@ -8,6 +8,7 @@ import { routes } from './routes/Routes';
 const session = require('express-session');
 const passport = require('passport');
 require('./services/passport/local-auth')(passport)
+
 // Environment Config
 dotenv.config({path: '../.env'});
 const {SERVER_PORT} = process.env;
@@ -27,7 +28,7 @@ createConnection().then(async () => {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(cors());
-  app.use(express.json());
+
   app.use(morgan('dev'));
   routes(app);
 

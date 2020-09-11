@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 @Entity('Users')
 export class User {
@@ -30,12 +30,12 @@ export class User {
     return `${this.firstName} ${this.lastName}`;
   }
 
-  public encryptPassword(pass: string): string {
-    return bcrypt.hashSync(pass, bcrypt.genSaltSync(10));
+  public async encryptPassword(pass: string) {
+    return await bcrypt.hash(pass, bcrypt.genSaltSync(10));
   }
 
-  public comparePassword(pass: string): boolean {
-    return bcrypt.compareSync(pass, this.password);
+  public async comparePassword(pass: string) {
+    return await bcrypt.compare(pass, this.password);
   }
 }
 
