@@ -28,7 +28,6 @@ createConnection().then(async () => {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(cors());
-
   app.use(morgan('dev'));
   routes(app);
 
@@ -37,5 +36,3 @@ createConnection().then(async () => {
     console.log('Server running on Port: ' + SERVER_PORT);
   });
 }).catch(error => console.log(error));
-
-
