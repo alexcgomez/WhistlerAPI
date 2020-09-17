@@ -3,6 +3,7 @@ import * as jwt from 'jsonwebtoken';
 import { getRepository } from 'typeorm/index';
 import { User } from '../../Entities/User';
 import * as dotenv from 'dotenv';
+import { log } from 'util';
 
 dotenv.config({ path: '../.env' });
 const router = express.Router();
@@ -13,25 +14,27 @@ export default router;
 
 async function login(req, res) {
   const { email, password } = req.body;
-  const user = await getRepository(User).findOne({ email: email });
-  const accessTokenSecret = process.env.SECRET_TOKEN;
-  if (user) {
-    const userPasswordMatch = await user.comparePassword(password);
-    console.log(userPasswordMatch);
-    if (userPasswordMatch) {
-           const accessToken = jwt.sign({ email: user.email }, accessTokenSecret);
-              res.json({
-                accessToken,
-              });
 
-/*      res.json({
-        message: 'Welcome back, ' + user.firstName + ' ' + user.lastName,
-        login: true
-      });*/
-    } else {
+  const user = await getRepository(User).findOneOrFail({ email: email }).catch(() =>
+    res.status('401').json({
+      message: 'Username or password incorrect',
+      loggedIn: false,
+    }),
+  );
+  const accessTokenSecret = process.env.SECRET_TOKEN;
+  if (user.id) {
+    const userPasswordMatch = await user.comparePassword(password);
+    if (userPasswordMatch) {
+      const accessToken = jwt.sign({ email: user.email }, accessTokenSecret);
       res.json({
+        message: 'Welcome back, ' + user.firstName + ' ' + user.lastName,
+        loggedIn: true,
+        accessToken: accessToken,
+      });
+    } else {
+      res.status('401').json({
         message: 'Username or password incorrect',
-        login: false
+        loggedIn: false,
       });
     }
   }
