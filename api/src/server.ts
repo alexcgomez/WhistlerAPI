@@ -1,13 +1,10 @@
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
 import { createConnection } from 'typeorm';
 import * as cors from 'cors';
 import * as morgan from 'morgan';
 import { routes } from './routes/Routes';
-
-const session = require('express-session');
-const passport = require('passport');
-require('./services/passport/local-auth')(passport)
 
 // Environment Config
 dotenv.config({path: '../.env'});
@@ -20,15 +17,10 @@ createConnection().then(async () => {
   const app = express();
 
   // Middlewares
-  app.use(session({
-    secret: 'mySecretSession',
-    resave: false,
-    saveUninitialized: false,
-  }));
-  app.use(passport.initialize());
-  app.use(passport.session());
   app.use(cors());
   app.use(morgan('dev'));
+  app.use(express.urlencoded({ extended: true }))
+  app.use(bodyParser.json());
   routes(app);
 
   // Server Run
