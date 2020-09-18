@@ -1,6 +1,8 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 import { compare, genSaltSync, hash } from 'bcryptjs';
+import { Site } from './Sites';
+
 
 @Entity('Users')
 export class User {
@@ -25,6 +27,10 @@ export class User {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  // eslint-disable-next-line no-unused-vars
+  @OneToMany(type => Site, site => site.user)
+  sites: Site[];
 
   public get fullName(): string {
     return `${this.firstName} ${this.lastName}`;

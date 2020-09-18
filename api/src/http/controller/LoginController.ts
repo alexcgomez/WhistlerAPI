@@ -30,6 +30,7 @@ async function login(req, res) {
         message: 'Welcome back, ' + user.firstName + ' ' + user.lastName,
         loggedIn: true,
         accessToken: accessToken,
+        user: user,
       });
     } else {
       res.status('401').json({
