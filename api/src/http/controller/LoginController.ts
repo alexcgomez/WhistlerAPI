@@ -15,12 +15,14 @@ export default router;
 async function login(req, res) {
   const { email, password } = req.body;
 
-  const user = await getRepository(User).findOneOrFail({ email: email }).catch(() =>
-    res.status('401').json({
-      message: 'Username or password incorrect',
-      loggedIn: false,
-    }),
-  );
+  const user = await getRepository(User)
+    .findOneOrFail({ email: email })
+    .catch(() =>
+      res.status('401').json({
+        message: 'Username or password incorrect',
+        loggedIn: false,
+      })
+    );
   const accessTokenSecret = process.env.SECRET_TOKEN;
   if (user.id) {
     const userPasswordMatch = await user.comparePassword(password);
