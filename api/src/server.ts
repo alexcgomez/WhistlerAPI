@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
 import { createConnection } from 'typeorm';
 import * as cors from 'cors';
@@ -17,8 +18,9 @@ createConnection().then(async () => {
 
   // Middlewares
   app.use(cors());
-  app.use(express.json());
   app.use(morgan('dev'));
+  app.use(express.urlencoded({ extended: true }))
+  app.use(bodyParser.json());
   routes(app);
 
   // Server Run
@@ -26,5 +28,3 @@ createConnection().then(async () => {
     console.log('Server running on Port: ' + SERVER_PORT);
   });
 }).catch(error => console.log(error));
-
-
